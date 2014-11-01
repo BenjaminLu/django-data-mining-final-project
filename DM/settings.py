@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from recsys.algorithm.factorize import SVD
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 TEMPLATE_DIRS = (
@@ -100,3 +101,6 @@ STATICFILES_DIRS = (
     'C:/DM/public',
 )
 STATIC_ROOT = os.path.join(BASE_DIR, 'public')
+
+
+SVD_OBJECT = SVD(filename='./tmp/movielens') # Loading already computed SVD model

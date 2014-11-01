@@ -1,4 +1,5 @@
 from django.shortcuts import render_to_response
+from django.conf import settings
 
 import csv as csv
 import numpy as np
@@ -13,7 +14,21 @@ def home(request):
     for i in xrange(1, 10):
         swap_columns(data, i, i+1)
 
-    return render_to_response('main/index.html', {'message': message, 'data': data, 'result' : result})
+    svd = settings.SVD_OBJECT
+    ITEMID1 = 1    # Toy Story (1995)
+    ITEMID2 = 2355 # A bug's life (1998)
+    #Compute similarity between two movies
+    similarity = svd.similarity(ITEMID1, ITEMID2)
+    #Get movies similar to Toy Story
+    print svd.similar(ITEMID1)
+    MIN_RATING = 0.0
+    MAX_RATING = 5.0
+    ITEMID = 1
+    USERID = 1
+    print svd.predict(ITEMID, USERID, MIN_RATING, MAX_RATING)
+    print svd.recommend(USERID, is_row=False)
+    print svd.recommend(ITEMID)
+    return render_to_response('main/index.html', {'message': message, 'data': data, 'result' : result, 'similarity' : similarity })
 
 def train():
     csv_file_object = csv.reader(open('data/train.csv', 'rb'))  # Load in the csv file
