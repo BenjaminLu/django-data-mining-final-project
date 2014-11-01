@@ -1,0 +1,15 @@
+@-moz-document url-prefix() {
+  fieldset { display: table-cell; }
+}
+
+.title {
+	margin: 0 auto;
+	text-align: center;
+	margin-top: 50px;
+}
+
+.container {
+	max-width: 989px;
+	margin: 0 auto;
+	margin-top: 50px;
+}
